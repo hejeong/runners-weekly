@@ -3,7 +3,9 @@ class UsersController < ApplicationController
         user = User.new(user_params)
         if user.valid?
             user.save;
-            puts "hi"
+            render status: 200
+        else
+            render status: 403
         end
     end
 

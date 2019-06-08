@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 class Signup extends Component {
     constructor(){
@@ -18,7 +19,7 @@ class Signup extends Component {
 
     handleOnSubmit = (event) => {
         event.preventDefault();
-        fetch(`http://localhost:3001/users`,{
+        fetch(`http://localhost:8000/api/users`,{
             method: 'POST',
 			headers: {
 				"Content-Type": 'application/json'
@@ -32,12 +33,19 @@ class Signup extends Component {
                 }
             })
         })
-        .then(checkStatus => console.log(checkStatus))
+        .then(response => {
+            if(response.status === 200){
+                this.setState({redirect: true})
+            }
+        })
         .catch(function() {
             console.log("error");
         });;
     }
     render(){
+        if(this.state.redirect){
+            return <Redirect to='/' />
+        }
         return(
             <div>
                 <form onSubmit={this.handleOnSubmit}>
