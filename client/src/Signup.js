@@ -8,7 +8,8 @@ class Signup extends Component {
             name: "",
             username: "",
             password: "",
-            email: ""
+            email: "",
+            redirect: false
         }
     }
     handleOnChange = (event) => {
@@ -33,11 +34,16 @@ class Signup extends Component {
                 }
             })
         })
-        .then(response => {
-            if(response.status === 200){
-                this.setState({redirect: true})
+        .then(response => response.json())
+        .then(data => {
+            if(data.success){
+                this.setState({
+                    redirect: true
+                })
+            }else if(data.hasOwnProperty('errors')){
+                
             }
-        })
+        }) 
         .catch(function() {
             console.log("error");
         });;

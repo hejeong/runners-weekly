@@ -3,9 +3,9 @@ class UsersController < ApplicationController
         user = User.new(user_params)
         if user.valid?
             user.save;
-            render status: 200
+            render json: { success: true }, status: 200
         else
-            render status: 403
+            render json: { :errors => user.errors.full_messages}, status: 403
         end
     end
 
