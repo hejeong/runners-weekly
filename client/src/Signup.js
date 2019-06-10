@@ -41,13 +41,14 @@ class Signup extends Component {
                     redirect: true
                 })
             }else if(data.hasOwnProperty('errors')){
-                
+
             }
         }) 
         .catch(function() {
             console.log("error");
         });;
     }
+    
     render(){
         if(this.state.redirect){
             return <Redirect to='/' />
