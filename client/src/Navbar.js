@@ -12,6 +12,12 @@ const Navbar = () => <div>
             background: 'lightblue'
         }}
     > Sign Up </NavLink>
+
+    <NavLink to ="/login" exact 
+        activeStyle={{
+            background: 'lightblue'
+        }}
+    > Log In </NavLink>
 </div>;
 
 export default Navbar;
