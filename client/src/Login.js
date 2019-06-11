@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
     constructor(){
@@ -22,12 +23,12 @@ class Login extends Component {
             headers: {
 				"Content-Type": 'application/json'
             },
-            body: {
+            body: JSON.stringify({
                 user: {
                     username: this.state.username,
                     password: this.state.password
                 }
-            }
+            })
         })
         .then(response => response.json())
         .then(data => {
@@ -56,3 +57,5 @@ class Login extends Component {
         )
     }
 }
+
+export default Login;
