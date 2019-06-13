@@ -11,12 +11,12 @@ class Login extends Component {
         }
     }
 
-    handleOnChange = (event) => {
+    handleLoginOnChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
         })
     }
-    handleOnSubmit = (event) => {
+    handleLoginOnSubmit = (event) => {
         event.preventDefault()
         fetch(`http://localhost:8000/api/login`, {
             method: 'POST',
@@ -37,7 +37,8 @@ class Login extends Component {
                 alert(data.error)
             }else {
                 //success
-                console.log(data)
+                localStorage.setItem("token", data.jwt)
+                this.setState({"user-name": data.name})
             }
       
         })
@@ -48,14 +49,14 @@ class Login extends Component {
         }
         return(
             <div>
-                 <form onSubmit={this.handleOnSubmit}>
+                 <form onSubmit={this.handleLoginOnSubmit}>
                     <h1>Log In</h1>
                    
                     <label > Username:</label> <br />
-                    <input type="text" name="username" value={this.state.username} onChange={this.handleOnChange} /> <br /><br />
+                    <input type="text" name="username" value={this.state.username} onChange={this.handleLoginOnChange} /> <br /><br />
 
                     <label > Password:</label> <br />
-                    <input type="password" name="password" value={this.state.password} onChange={this.handleOnChange} /> <br /><br />
+                    <input type="password" name="password" value={this.state.password} onChange={this.handleLoginOnChange} /> <br /><br />
 
                     <input type="submit" name="submit" value="Submit"/>
 

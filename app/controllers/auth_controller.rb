@@ -8,7 +8,7 @@ class AuthController < ApplicationController
             response = {
                 user: {
                     name: @user.name
-                }
+                },
                 jwt: token
             }
             render json: response, status: :authorized
