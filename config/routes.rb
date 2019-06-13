@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   scope :api do
     resources :users, only: [:create]
-    post '/login' => 'sessions#create'
-    post '/logout' => 'sessions#delete'
+    post '/login' => 'auth#create'
+    post '/logout' => 'auth#delete'
   end
   
 end
