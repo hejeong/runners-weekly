@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   scope :api do
     resources :users, only: [:create]
     post '/login' => 'sessions#create'
+    post '/logout' => 'sessions#delete'
   end
   
 end

@@ -1,23 +1,18 @@
 class SessionsController < ApplicationController
 
     def create
-
-        user = User.find_by(username: login_params[:username])
-        if !user
-            #incorrect username
-            #throw error
-        end
-        user = user.try(:authenticate, login_params[:password])
-        if !user
-            #throw error if incorrect password
+        @user = User.find_by(username: params[:user][:username])
+        
+        if @user && @user.authenticate(params[:user][:password])
+            render json: @user
         else
-            session[:token] = user.id
-            render json: { token: session[:token]}, status: 200
+            render json: {
+                error: 'Invalid credentials'
+            }, status: :unauthorized
         end
     end
 
-    private
-    def login_params
-        params.require(:user).permit(:username, :password)
+    def delete 
+
     end
 end

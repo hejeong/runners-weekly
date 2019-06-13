@@ -32,7 +32,14 @@ class Login extends Component {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data)
+            if(data.error){
+                //error
+                alert(data.error)
+            }else {
+                //success
+                console.log(data)
+            }
+      
         })
     }
     render(){
