@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-
+import { connect } from 'react-redux';
+import { setUser } from '../actions/users.js';
 class Login extends Component {
     constructor(){
         super()
         this.state={
             username: '',
             password: '',
-            redirect: false
+            redirect: false,
         }
     }
 
@@ -16,6 +17,7 @@ class Login extends Component {
             [event.target.name]: event.target.value
         })
     }
+
     handleLoginOnSubmit = (event) => {
         event.preventDefault()
         fetch(`http://localhost:8000/api/login`, {
@@ -38,14 +40,13 @@ class Login extends Component {
             }else {
                 //success
                 localStorage.setItem("token", data.jwt)
-                this.setState({"user-name": data.name})
+                this.props.setUser(data.user.name)
             }
-      
-        })
+        });
     }
-    render(){
-        if(this.state.redirect){
-            return <Redirect to='/' />
+
+    render(){ if(this.props.currentUser){
+            return <h1>Welcome {this.props.currentUser}</h1>
         }
         return(
             <div>
@@ -66,4 +67,8 @@ class Login extends Component {
     }
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+    return { currentUser: state.usersReducer.user }
+}
+
+export default connect(mapStateToProps, { setUser })(Login);
