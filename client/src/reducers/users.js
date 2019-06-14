@@ -3,7 +3,7 @@ export default (state = {user: ''}, action) => {
         case "SET_USER":
             return { user: action.user }
         case "REMOVE_USER":
-            return ""
+            return { user: ""}
         default:
             return state
     }

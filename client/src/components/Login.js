@@ -41,12 +41,16 @@ class Login extends Component {
                 //success
                 localStorage.setItem("token", data.jwt)
                 this.props.setUser(data.user.name)
+                this.setState({
+                    redirect: true
+                })
             }
         });
     }
 
-    render(){ if(this.props.currentUser){
-            return <h1>Welcome {this.props.currentUser}</h1>
+    render(){ 
+        if(this.state.redirect || this.props.currentUser){
+           return <Redirect to='/' />
         }
         return(
             <div>
