@@ -1,21 +1,25 @@
 import React from 'react';
 import Home from './components/Home';
+import NoRoute from './components/NoRoute';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { Switch, Route} from 'react-router-dom';
 
 function App() {
 
   
   return (
     <div className="App">
-      <Router>
+      
         <Navbar />
-        <Route exact path="/" render={ Home } />
-        <Route path="/signup" component={ Signup } />
-        <Route path="/login" component={ Login } />
-      </Router>
+        <Switch >
+          <Route exact path='/' component={ Home }/>
+          <Route exact path='/signup' component={ Signup } />
+          <Route exact path='/login' component={ Login } />
+          <Route component={NoRoute} />
+        </Switch>
+      
     </div>
   );
 }
