@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { setUser } from '../actions/users.js';
 import { Redirect } from 'react-router-dom';
 
 class Signup extends Component {
@@ -9,7 +11,6 @@ class Signup extends Component {
             username: "",
             password: "",
             email: "",
-            redirect: false
         }
     }
     handleOnChange = (event) => {
@@ -36,12 +37,12 @@ class Signup extends Component {
         })
         .then(response => response.json())
         .then(data => {
-            if(data.success){
-                this.setState({
-                    redirect: true
-                })
-            }else if(data.hasOwnProperty('errors')){
-
+            console.log(data)
+            if(data.errors){
+                alert(data.errors);
+            }else {
+                localStorage.setItem("token", data.jwt)
+                this.props.setUser(data.user.name)
             }
         }) 
         .catch(function() {
@@ -50,7 +51,7 @@ class Signup extends Component {
     }
     
     render(){
-        if(this.state.redirect){
+        if(this.props.currentUser){
             return <Redirect to='/' />
         }
         return(
@@ -76,5 +77,8 @@ class Signup extends Component {
         )
     }
 }
+const mapStateToProps = (state) => {
+    return { currentUser: state.usersReducer.user }
+}
 
-export default Signup;
+export default connect(mapStateToProps, { setUser })(Signup);

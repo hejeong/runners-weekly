@@ -2,10 +2,17 @@ class UsersController < ApplicationController
     def create
         @user = User.create(user_params)
         if @user.save
-         response = { message: 'User created successfully'}
-         render json: response, status: :created 
+            token = generate_token({id: @user.id})
+            response = {
+                message: 'User created successfully',
+                user: {
+                    name: @user.name
+                },
+                jwt: token
+            }
+            render json: response, status: :created 
         else
-         render json: @user.errors, status: :bad
+            render json: {errors: @user.errors.full_messages}, status: :bad
         end 
     end
 
