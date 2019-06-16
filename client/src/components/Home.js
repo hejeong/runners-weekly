@@ -1,9 +1,9 @@
 import React from 'react';
-
+import BlogContainer from './BlogContainer';
 const Home = () => {
     return(
         <div>
-            <h1>Home</h1>
+            <BlogContainer />
         </div>
     )
 }
