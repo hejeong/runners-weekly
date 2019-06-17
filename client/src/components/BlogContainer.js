@@ -1,4 +1,5 @@
 import React from 'react';
+import BlogList from './BlogList';
 class BlogContainer extends React.Component {
     constructor() {
       super()
@@ -6,10 +7,20 @@ class BlogContainer extends React.Component {
         blogposts: []
       };
     }
-   
+    
+    componentDidMount(){
+        fetch('http://localhost:8000/api/posts')
+        .then(resp => resp.json())
+        .then(data => {
+            this.setState({
+                blogposts: data.posts
+            })
+        })
+        .catch(error => console.log(error));
+    }
    
     render() {
-      return <h1>Blog</h1>
+      return <BlogList posts={this.state.blogposts}/>
     }
   }
 
