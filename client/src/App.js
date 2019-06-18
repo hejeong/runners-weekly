@@ -19,8 +19,8 @@ function App() {
           <Route exact path='/' component={ Home }/>
           <Route exact path='/signup' component={ Signup } />
           <Route exact path='/login' component={ Login } />
+          <Route exact path ='/blog/:id' component={ BlogPost } />
           <Route exact path ='/blog' component={ BlogContainer } />
-          <Route path ='/blog/:id' component={ BlogPost } />
           <Route component={NoRoute} />
         </Switch>
       

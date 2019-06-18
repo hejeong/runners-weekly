@@ -9,16 +9,17 @@ class BlogPost extends Component {
         }
     }
     componentDidMount(){
-        fetch('http://localhost:3001/api/posts/' + props.match.params.id)
+        const url = 'http://localhost:8000/api/posts/' + this.props.match.params.id;
+        console.log(url)
+        fetch(url)
         .then(resp => resp.json())
-        .then(data => this.setState({
-            postData: data.post
-        }))
+        .then(data => {
+        console.log(data)})
         .catch(error => console.log(error));
     }
     render(){
         return <div>
-           hey
+           BLGOs
         </div>
     }
 }

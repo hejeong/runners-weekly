@@ -10,6 +10,14 @@ class Login extends Component {
             password: '',
             redirect: false,
         }
+        this._isMounted = false;
+    }
+    componentDidMount() {
+        this._isMounted = true;
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
 
     handleLoginOnChange = (event) => {
@@ -41,7 +49,7 @@ class Login extends Component {
                 //success
                 localStorage.setItem("token", data.jwt)
                 this.props.setUser(data.user.name)
-                this.setState({
+                this._isMounted && this.setState({
                     redirect: true
                 })
             }
