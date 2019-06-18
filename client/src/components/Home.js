@@ -3,7 +3,7 @@ import BlogContainer from './BlogContainer';
 const Home = () => {
     return(
         <div>
-            <BlogContainer />
+            Home
         </div>
     )
 }

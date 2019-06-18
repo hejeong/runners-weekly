@@ -12,6 +12,11 @@ const Navbar = (props) => {
                     background: 'lightblue'
                 }}
             > Home </NavLink>
+            <NavLink to ="/blog" exact 
+                activeStyle={{
+                    background: 'lightblue'
+                }}
+            > Main Blog </NavLink>
             <Logout />
         </div>
     }else {

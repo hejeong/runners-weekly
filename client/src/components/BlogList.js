@@ -1,9 +1,9 @@
 import React from 'react';
-import BlogPost from './BlogPost';
+import BlogPostCard from './BlogPostCard';
 
 const BlogList = ({posts}) => (
 <div>
-    {posts.map(post=>{ return <BlogPost post={post}/>})}
+    {posts.map(post=>{ return <BlogPostCard key={post.id} post={post}/>})}
 </div>);
 
 export default BlogList;
