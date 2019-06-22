@@ -1,9 +1,9 @@
 import React from 'react';
 import BlogPostCard from './BlogPostCard';
-
+import { Link } from 'react-router-dom';
 const BlogList = ({posts}) => (
-<div>
-    {posts.map(post=>{ return <BlogPostCard key={post.id} post={post}/>})}
-</div>);
+
+    posts.map(post=>{ return <li className="card-item"><Link to={'/blog/'+ post.id}><BlogPostCard key={post.id} post={post}/></Link></li>})
+);
 
 export default BlogList;

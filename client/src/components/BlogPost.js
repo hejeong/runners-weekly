@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
+import CircularProgress from '@material-ui/core/CircularProgress';
 class BlogPost extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            title: '',
-            author: '',
-            content: '',
+            post: null
         }
     }
     componentDidMount(){
@@ -14,12 +13,23 @@ class BlogPost extends Component {
         fetch(url)
         .then(resp => resp.json())
         .then(data => {
-        console.log(data)})
+            this.setState({
+                post: data.post
+            })
+        })
         .catch(error => console.log(error));
     }
     render(){
-        return <div>
-           BLGOs
+        if(!this.state.post){
+            return <div className="content">
+                <h1>Loading...</h1>
+                <CircularProgress />
+            </div>
+        }
+        return <div className="content">
+           <h1>{this.state.post.title}</h1>
+           <h3>{this.state.post.author}</h3>
+           <p>{this.state.post.content}</p>
         </div>
     }
 }

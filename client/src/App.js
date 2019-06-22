@@ -7,14 +7,15 @@ import BlogContainer from './components/BlogContainer';
 import BlogPost from './components/BlogPost';
 import Navbar from './components/Navbar';
 import { Switch, Route} from 'react-router-dom';
-
+import Logout from './components/Logout';
 function App() {
-
   
   return (
-    <div className="App">
-      
-        <Navbar />
+    <div>
+        <div class="drawer">
+         <Navbar />
+         <Logout className="navbar-profile"/>
+        </div>
         <Switch >
           <Route exact path='/' component={ Home }/>
           <Route exact path='/signup' component={ Signup } />
@@ -23,7 +24,6 @@ function App() {
           <Route exact path ='/blog' component={ BlogContainer } />
           <Route component={NoRoute} />
         </Switch>
-      
     </div>
   );
 }

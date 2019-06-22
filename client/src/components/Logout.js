@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { removeUser } from '../actions/users.js';
 
+
 const Logout = (props) => {
     const onClickLogout = (event) => {
         event.preventDefault();
@@ -12,12 +13,9 @@ const Logout = (props) => {
         return <Redirect to='/' />
     }
     return(
-        <NavLink to ="/logout" exact 
-                activeStyle={{
-                    background: 'lightblue'
-                }}
-                onClick={onClickLogout}
-        > Logout </NavLink>
+        <NavLink to="/logout" onClick={onClickLogout} className="nav-link">
+            Logout
+        </NavLink>
     )
 }
 

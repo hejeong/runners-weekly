@@ -20,7 +20,14 @@ class BlogContainer extends React.Component {
     }
    
     render() {
-      return <BlogList posts={this.state.blogposts}/>
+      return <div className="content">
+          <div className="header"><p className="header-title">Runner Magazine</p></div>
+          <div className="inner-content">
+            <ul className="blog-list">
+              <BlogList posts={this.state.blogposts}/>
+            </ul>
+          </div>
+        </div>
     }
   }
 

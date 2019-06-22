@@ -1,44 +1,36 @@
 import React from 'react';
-import Logout from './Logout';
+
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+
 
 const Navbar = (props) => {
     let elements;
     if(props.currentUser){
-        elements = <div>
-            <NavLink to ="/" exact 
-                activeStyle={{
-                    background: 'lightblue'
-                }}
-            > Home </NavLink>
-            <NavLink to ="/blog" exact 
-                activeStyle={{
-                    background: 'lightblue'
-                }}
-            > Main Blog </NavLink>
-            <Logout />
-        </div>
+        elements =
+        <ul className="navbar">               
+            <NavLink to="/" className="nav-link">
+                Home
+            </NavLink>
+            <NavLink to="/blog" className="nav-link">
+                Main Blog
+            </NavLink>
+        </ul>
     }else {
-        elements = <div>
-            <NavLink to ="/" exact 
-                activeStyle={{
-                    background: 'lightblue'
-                }}
-            > Home </NavLink>
+        elements = <ul className="navbar">
+                <NavLink to="/" className="nav-link">
+                    Home
+                </NavLink>
 
-            <NavLink to ="/signup" exact 
-                activeStyle={{
-                    background: 'lightblue'
-                }}
-            > Sign Up </NavLink>
+                <NavLink to="/login" className="nav-link">
+                    Login
+                </NavLink>
 
-            <NavLink to ="/login" exact 
-                activeStyle={{
-                    background: 'lightblue'
-                }}
-            > Log In </NavLink>
-        </div>
+                <NavLink to="/signup" className="nav-link">
+                    Sign up
+                </NavLink>
+            </ul>
     }
     return( 
         elements

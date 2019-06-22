@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setUser } from '../actions/users.js';
+
+
 class Login extends Component {
     constructor(){
         super()
@@ -55,25 +57,24 @@ class Login extends Component {
             }
         });
     }
-
+     
     render(){ 
         if(this.state.redirect || this.props.currentUser){
            return <Redirect to='/' />
         }
         return(
-            <div>
-                 <form onSubmit={this.handleLoginOnSubmit}>
-                    <h1>Log In</h1>
-                   
-                    <label > Username:</label> <br />
-                    <input type="text" name="username" value={this.state.username} onChange={this.handleLoginOnChange} /> <br /><br />
-
-                    <label > Password:</label> <br />
-                    <input type="password" name="password" value={this.state.password} onChange={this.handleLoginOnChange} /> <br /><br />
-
-                    <input type="submit" name="submit" value="Submit"/>
-
+            <div className="content">
+                <div className="header"><p className="header-title">Log In</p></div>
+                <div className="inner-content">
+                <form onSubmit={this.handleLoginOnSubmit} className="login-form">
+                    <h4>Sign in to continue</h4>
+                    <input id="username" name="username" placeholder="Username" type="text" value={this.state.username} onChange={this.handleLoginOnChange} />
+                    <br></br><br></br>
+                    <input id="password" name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.handleLoginOnChange} /> 
+                    <br></br><br></br>
+                    <input type="submit" name="submit" value="Login" className="login-submit"/>
                 </form>
+                </div>
             </div>
         )
     }

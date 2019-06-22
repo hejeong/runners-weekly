@@ -55,24 +55,20 @@ class Signup extends Component {
             return <Redirect to='/' />
         }
         return(
-            <div>
-                <form onSubmit={this.handleOnSubmit}>
-                    <h1>Sign Up</h1>
-                    <label > Name:</label> <br />
-                    <input type="text" name="name" value={this.state.name} onChange={this.handleOnChange} /> <br /><br />
+            <div className="content">
+                <div className="header"><p className="header-title">Sign Up</p></div>
+                <div className="inner-content">
+                <form onSubmit={this.handleOnSubmit} className="login-form">
+                    <h4>Sign Up</h4>
+                    <input type="text" name="name" placeholder="Name" value={this.state.name} onChange={this.handleOnChange} /> <br /><br />
+                    <input type="text" name="username" placeholder="Username" value={this.state.username} onChange={this.handleOnChange} /> <br /><br />
+                    <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleOnChange} /> <br /><br />
+                    <input type="email" name="email" placeholder="E-mail" value={this.state.email} onChange={this.handleOnChange} /> <br /><br />
 
-                    <label > Username:</label> <br />
-                    <input type="text" name="username" value={this.state.username} onChange={this.handleOnChange} /> <br /><br />
-
-                    <label > Password:</label> <br />
-                    <input type="password" name="password" value={this.state.password} onChange={this.handleOnChange} /> <br /><br />
-
-                    <label > E-mail:</label> <br />
-                    <input type="email" name="email" value={this.state.email} onChange={this.handleOnChange} /> <br /><br />
-
-                    <input type="submit" name="submit" value="Submit"/>
+                    <input type="submit" name="submit" value="Submit" className="login-submit"/>
 
                 </form>
+                </div>
             </div>
         )
     }
