@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Logout from './Logout';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 const Navbar = (props) => {
     let elements;
     if(props.currentUser){
-        elements =
+        elements = <React.Fragment>
         <ul className="navbar">               
             <NavLink to="/" className="nav-link">
                 Home
@@ -17,6 +17,8 @@ const Navbar = (props) => {
                 Main Blog
             </NavLink>
         </ul>
+        <Logout/>
+        </React.Fragment>
     }else {
         elements = <ul className="navbar">
                 <NavLink to="/" className="nav-link">

@@ -7,14 +7,15 @@ import BlogContainer from './components/BlogContainer';
 import BlogPost from './components/BlogPost';
 import Navbar from './components/Navbar';
 import { Switch, Route} from 'react-router-dom';
-import Logout from './components/Logout';
+
 function App() {
   
   return (
     <div>
         <div class="drawer">
-         <Navbar />
-         <Logout className="navbar-profile"/>
+          <p className="company-name1">Runners</p>
+          <p className="company-name2">Weekly</p>
+          <Navbar />
         </div>
         <Switch >
           <Route exact path='/' component={ Home }/>

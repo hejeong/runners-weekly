@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:500|Open+Sans+Condensed:300|Roboto:300&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500|Josefin+Slab:300,400|Roboto:300&display=swap');
 /*
 font-family: 'Roboto', sans-serif;
 font-family: 'Montserrat', sans-serif;
@@ -14,7 +14,23 @@ body {
   background-color: #f0f0f0;
   box-sizing: border-box;
 }
+.company-name1 {
+  color: rgb(154, 215, 233);
+  padding-top: 22px;
+  padding-left: 7px;
+  font-size: 28px;
+  font-family: 'Josefin Slab', serif;
+  display: inline-block;
+  margin: 0px;
+}
+.company-name2 {
+  color: rgb(0, 138, 184);
+  font-size: 28px;
+  font-family: 'Josefin Slab', serif;
+  display: inline-block;
+  margin: 0px;
 
+}
 .login-form {
   margin: 0 auto;
   margin-top: 155px;
@@ -54,8 +70,11 @@ body {
   padding-left: 10px;
 }
 .navbar {
+  border-top: 1px solid rgba(77, 75, 75, 0.774);
+  border-bottom: 1px solid rgba(77, 75, 75, 0.774);
   list-style-type: none;
   margin: 0;
+  margin-top: 69px;
   padding: 0;
   width: 200px;
   position: fixed;
@@ -79,15 +98,44 @@ body {
 }
 
 .navbar-profile{
+  border-top: 0.5px solid rgba(77, 75, 75, 0.774);
+  border-bottom: 1px solid rgba(77, 75, 75, 0.774);
   margin: 0;
-  padding: 0;
   position: fixed;
-  bottom: 0;
-  left: 0;
+  bottom: 1px;
   z-index: 1;
+  cursor: pointer;
+  width: 200px;
+  background-color: rgba(27, 26, 26, 0.349);
+  padding-bottom: 10px;
 }
-h1 {
- 
+
+.navbar-profile:hover {
+  color: #8bb1b162;
+}
+
+.navbar-profile > a {
+  color: red;
+}
+
+.user-name {
+  margin: auto;
+  margin-top: -2.4em;
+  margin-left: 3.5em;
+  color: #4abdbd;
+  font-size: 1em;
+  font-family: "Coda", sans-serif;
+  font-weight: bold;
+}
+.logout{
+  margin-left: 7.5em;
+}
+
+img.avatar {
+  padding: .7em;
+  height: 2em;
+  width: 2em;
+  border-radius: 18em;
 }
 h3, h5 {
   margin: 0px;
@@ -165,12 +213,13 @@ p {
   z-index: 2;
   overflow-y: hidden;
   color: rgb(255, 255, 255);
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: 'Josefin Slab', serif;
+  box-shadow: 0 20px 40px -14px rgba(0,0,0,0.25);
 }
 
 .header-title {
   font-size: 35px;
-  margin: 10px;
+  margin: 15px;
   margin-left: 20px;
 }
 /* On mouse-over, add a deeper shadow */

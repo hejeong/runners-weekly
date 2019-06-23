@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 import { removeUser } from '../actions/users.js';
-
+import jon from '../assets/jon.jpg';
 
 const Logout = (props) => {
     const onClickLogout = (event) => {
@@ -13,10 +13,19 @@ const Logout = (props) => {
         return <Redirect to='/' />
     }
     return(
-        <NavLink to="/logout" onClick={onClickLogout} className="nav-link">
+        <div className="navbar-profile"> 
+        <div className="avatar-user-group">
+            <img className="avatar" src={jon} alt="Ash" />
+            <div className="user-name">{props.currentUser}</div> <br></br>
+        </div>
+        <NavLink to="/logout" onClick={onClickLogout} className="logout">
             Logout
         </NavLink>
+        </div>
     )
 }
+const mapStateToProps = (state) => {
+    return { currentUser: state.usersReducer.user }
+}
 
-export default connect(null, { removeUser })(Logout);
+export default connect(mapStateToProps, { removeUser })(Logout);
