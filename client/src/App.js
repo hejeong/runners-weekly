@@ -6,15 +6,19 @@ import Login from './components/Login';
 import BlogContainer from './components/BlogContainer';
 import BlogPost from './components/BlogPost';
 import Navbar from './components/Navbar';
-import { Switch, Route} from 'react-router-dom';
+import { NavLink, Switch, Route} from 'react-router-dom';
 
 function App() {
   
   return (
     <div>
         <div class="drawer">
-          <p className="company-name1">Runners</p>
-          <p className="company-name2">Weekly</p>
+          <div className="company-name">
+            <NavLink to="/">
+              <p className="company-name1">Runners</p>
+              <p className="company-name2">Weekly</p>
+            </NavLink>
+          </div>
           <Navbar />
         </div>
         <Switch >

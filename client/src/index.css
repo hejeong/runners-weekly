@@ -14,19 +14,21 @@ body {
   background-color: #f0f0f0;
   box-sizing: border-box;
 }
+.company-name {
+  background-color: rgb(18, 18, 32);
+  padding-bottom: 20px;
+}
 .company-name1 {
   color: rgb(154, 215, 233);
-  padding-top: 22px;
-  padding-left: 7px;
+  padding-top: 13px;
+  padding-left: 4px;
   font-size: 28px;
-  font-family: 'Josefin Slab', serif;
   display: inline-block;
   margin: 0px;
 }
 .company-name2 {
   color: rgb(0, 138, 184);
   font-size: 28px;
-  font-family: 'Josefin Slab', serif;
   display: inline-block;
   margin: 0px;
 
@@ -61,6 +63,9 @@ body {
   background-color: #555;
   color: white;
 }
+
+
+
 .content {
   margin-left: 200px;
 }
@@ -70,7 +75,7 @@ body {
   padding-left: 10px;
 }
 .navbar {
-  border-top: 1px solid rgba(77, 75, 75, 0.774);
+  border-top: 0.5px solid rgba(77, 75, 75, 0.774);
   border-bottom: 1px solid rgba(77, 75, 75, 0.774);
   list-style-type: none;
   margin: 0;
@@ -114,7 +119,7 @@ body {
   color: #8bb1b162;
 }
 
-.navbar-profile > a {
+.navbar-profile > a.logout {
   color: red;
 }
 
@@ -124,8 +129,36 @@ body {
   margin-left: 3.5em;
   color: #4abdbd;
   font-size: 1em;
-  font-family: "Coda", sans-serif;
+  font-family: 'Roboto', serif;
   font-weight: bold;
+}
+.login-link {
+  display: block;
+  color: rgba(255, 255, 255, 0.815);
+  margin-top: 8px;
+  padding: 6px 23px;
+  text-decoration: none;
+}
+.login {
+  color: rgb(129, 197, 129);
+  display: inline-block;
+  transition: 0.3s;
+}
+.login:hover {
+  color: rgba(129, 197, 129, 0.609);
+}
+.signup {
+  color: rgb(132, 219, 205);
+  display: inline-block;
+  transition: 0.3s;
+}
+.signup:hover {
+  color: rgba(132, 219, 205, 0.705);
+}
+.or {
+  color: white;
+  font-size: 15px;
+  display: inline-block;
 }
 .logout{
   margin-left: 7.5em;
@@ -154,12 +187,12 @@ a {
 }
 @media(min-width: 56rem) {
   .card-item {
-    width: 33.3333%;
+    width: 25.3333%;
   }
 }
 @media(min-width: 40rem) {
   .card-item {
-    width: 40%;
+    width: 31%;
   }
   .card-image::before {
     padding-top: 66.6%; 
@@ -219,8 +252,7 @@ p {
 
 .header-title {
   font-size: 35px;
-  margin: 15px;
-  margin-left: 20px;
+  margin: 20px;
 }
 /* On mouse-over, add a deeper shadow */
 .card:hover {
@@ -262,6 +294,15 @@ p {
   font-weight: 300;
   letter-spacing: 2px;
   text-transform: uppercase;
+  margin: 0px;
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+}
+.post-author {
+  margin: 0px;
+  display: inline-block;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 3px;
 }
 .post-description {
   flex: 1 1 auto;

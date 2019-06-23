@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
-
 const Navbar = (props) => {
     let elements;
     if(props.currentUser){
@@ -20,19 +19,31 @@ const Navbar = (props) => {
         <Logout/>
         </React.Fragment>
     }else {
-        elements = <ul className="navbar">
+        elements = <React.Fragment>
+            <ul className="navbar">
                 <NavLink to="/" className="nav-link">
                     Home
                 </NavLink>
-
-                <NavLink to="/login" className="nav-link">
-                    Login
+                <NavLink to="/about" className="nav-link">
+                    Featured    
                 </NavLink>
-
-                <NavLink to="/signup" className="nav-link">
-                    Sign up
+                <NavLink to="/about" className="nav-link">
+                    About Us
+                </NavLink>
+                <NavLink to="/about" className="nav-link">
+                    Contact Us
                 </NavLink>
             </ul>
+            <div className="navbar-profile">
+                <NavLink to="/login" className="login-link login">
+                    Login
+                </NavLink>
+                <p className="or">or</p>
+                <NavLink to="/signup" className="login-link signup">
+                    Sign up
+                </NavLink>
+            </div>
+            </React.Fragment> 
     }
     return( 
         elements
