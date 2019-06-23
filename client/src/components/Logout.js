@@ -12,11 +12,16 @@ const Logout = (props) => {
         props.removeUser();
         return <Redirect to='/' />
     }
+
+    const profileURL = "/profile/" + props.currentUser;
+
     return(
         <div className="navbar-profile"> 
         <div className="avatar-user-group">
+            <NavLink to={profileURL} >
             <img className="avatar" src={jon} alt="Ash" />
             <div className="user-name">{props.currentUser}</div> <br></br>
+            </NavLink>
         </div>
         <NavLink to="/logout" onClick={onClickLogout} className="logout">
             Logout

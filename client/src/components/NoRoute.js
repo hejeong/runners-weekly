@@ -3,7 +3,7 @@ import React from 'react';
 const NoRoute = () => {
     return (
         <div className="content">
-            <h1>This route does not exist</h1>
+            <div className="header"><p className="header-title">This route does not exist</p></div>
         </div>
     )
 }

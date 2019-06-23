@@ -27,9 +27,11 @@ class BlogPost extends Component {
             </div>
         }
         return <div className="content">
-           <h1>{this.state.post.title}</h1>
-           <h3>{this.state.post.author}</h3>
-           <p>{this.state.post.content}</p>
+            <div className="header"><p className="header-title">{this.state.post.title}</p></div>
+            <div className="inner-content">
+                <h3>{this.state.post.author}</h3>
+                <p>{this.state.post.content}</p>
+            </div>
         </div>
     }
 }
