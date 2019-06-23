@@ -27,6 +27,7 @@ function App() {
           <Route exact path='/login' component={ Login } />
           <Route exact path ='/blog/:id' component={ BlogPost } />
           <Route exact path ='/blog' component={ BlogContainer } />
+          <Route exact path ='/profile/:username' component= { Profile } />
           <Route component={NoRoute} />
         </Switch>
     </div>
