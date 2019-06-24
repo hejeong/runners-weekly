@@ -12,7 +12,7 @@ class ProfileContainer extends Component {
         fetch(`http://localhost:8000/api/profile/` + this.props.currentUsername)
         .then(resp => resp.json())
         .then(data => this.setState({
-            userInfo: data
+            userInfo: data.user
         }))
         .catch(err => console.error('Error:', err));
     }
@@ -30,7 +30,7 @@ class ProfileContainer extends Component {
             <div className="content">
                 <div className="header"><p className="header-title">{this.props.currentUsername}'s Profile</p></div>
                 <div className="inner-content">
-                    <Profile userInfo={this.state.userInfo}/>
+                    <Profile user={this.state.userInfo}/>
                 </div>
             </div>
         )

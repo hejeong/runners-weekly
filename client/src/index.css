@@ -310,3 +310,40 @@ p {
   line-height: 1.5;
   margin-bottom: 1.25rem;
 }
+
+.profile-show {
+  background-color: #6C939F;
+  margin: 60px auto;
+  margin-bottom: 0px;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  width: 80%;
+}
+
+.profile-username {
+  background-color: #26596A;
+  padding: 10px;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+  color: white;
+  
+}
+
+.profile-picture{
+  height: 10em;
+  width: 10em;
+  border-radius: 0.25rem;
+
+}
+
+.picture-container {
+  margin: 25px;
+  margin-bottom: 0px;
+}
+
+.profile-name {
+  color: rgba(193, 241, 231, 0.685);
+  margin-left: 50px;
+  margin-top: 0px;
+  padding-bottom: 10px;
+}
