@@ -1,9 +1,11 @@
-export default (state = {user: ''}, action) => {
+export default (state = {user: '', username: ''}, action) => {
     switch(action.type){
         case "SET_USER":
-            return { user: action.user }
+            return Object.assign({}, state, { user: action.user })
+        case "SET_USERNAME":
+            return Object.assign({}, state, { username: action.username})
         case "REMOVE_USER":
-            return { user: ""}
+            return {user: '', username: ''}
         default:
             return state
     }

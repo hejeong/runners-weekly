@@ -6,7 +6,8 @@ class UsersController < ApplicationController
             response = {
                 message: 'User created successfully',
                 user: {
-                    name: @user.name
+                    name: @user.name,
+                    username: @user.username
                 },
                 jwt: token
             }

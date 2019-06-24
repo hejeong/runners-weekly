@@ -8,7 +8,8 @@ class AuthController < ApplicationController
           
             response = {
                 user: {
-                    name: @user.name
+                    name: @user.name,
+                    username: @user.username
                 },
                 jwt: token
             }

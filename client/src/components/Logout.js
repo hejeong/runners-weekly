@@ -13,7 +13,7 @@ const Logout = (props) => {
         return <Redirect to='/' />
     }
 
-    const profileURL = "/profile/" + props.currentUser;
+    const profileURL = "/profile/" + props.currentUsername;
 
     return(
         <div className="navbar-profile"> 
@@ -30,7 +30,10 @@ const Logout = (props) => {
     )
 }
 const mapStateToProps = (state) => {
-    return { currentUser: state.usersReducer.user }
+    return { 
+        currentUser: state.usersReducer.user,
+        currentUsername: state.usersReducer.username
+    }
 }
 
 export default connect(mapStateToProps, { removeUser })(Logout);

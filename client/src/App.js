@@ -7,12 +7,12 @@ import BlogContainer from './components/BlogContainer';
 import BlogPost from './components/BlogPost';
 import Navbar from './components/Navbar';
 import { NavLink, Switch, Route} from 'react-router-dom';
-
+import ProfileContainer from './components/ProfileContainer';
 function App() {
   
   return (
     <div>
-        <div class="drawer">
+        <div className="drawer">
           <div className="company-name">
             <NavLink to="/">
               <p className="company-name1">Runners</p>
@@ -27,7 +27,7 @@ function App() {
           <Route exact path='/login' component={ Login } />
           <Route exact path ='/blog/:id' component={ BlogPost } />
           <Route exact path ='/blog' component={ BlogContainer } />
-          <Route exact path ='/profile/:username' component= { Profile } />
+          <Route exact path ='/profile/:username' component= { ProfileContainer } />
           <Route component={NoRoute} />
         </Switch>
     </div>

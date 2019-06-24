@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setUser } from '../actions/users.js';
+import { setUser, setUsername } from '../actions/users.js';
 import { Redirect } from 'react-router-dom';
 
 class Signup extends Component {
@@ -42,7 +42,8 @@ class Signup extends Component {
                 alert(data.errors);
             }else {
                 localStorage.setItem("token", data.jwt)
-                this.props.setUser(data.user.username)
+                this.props.setUser(data.user.user)
+                this.props.setUsername(data.user.username)
             }
         }) 
         .catch(function() {
@@ -74,7 +75,10 @@ class Signup extends Component {
     }
 }
 const mapStateToProps = (state) => {
-    return { currentUser: state.usersReducer.user }
+    return { 
+        currentUser: state.usersReducer.user,
+        currentUsername: state.usersReducer.username
+     }
 }
 
-export default connect(mapStateToProps, { setUser })(Signup);
+export default connect(mapStateToProps, { setUser, setUsername })(Signup);

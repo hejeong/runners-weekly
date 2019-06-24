@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Profile from './Profile';
+import { connect } from 'react-redux';
 class ProfileContainer extends Component {
     constructor(props) {
         super(props)
@@ -8,7 +9,7 @@ class ProfileContainer extends Component {
         }
     }
     componentDidMount(){
-        fetch(`http://localhost:8000/api/profile/` + this.props.currentUser)
+        fetch(`http://localhost:8000/api/profile/` + this.props.currentUsername)
         .then(resp => resp.json())
         .then(data => this.setState({
             userInfo: data
@@ -17,17 +18,17 @@ class ProfileContainer extends Component {
     }
 
     render(){
-        if(!this.state.userInfo){
-            <div className="content">
+        if(this.state.userInfo == null){
+            return( <div className="content">
                 <div className="header"><p className="header-title">Loading...</p></div>
                 <div className="inner-content">
                    Profile Loading...
                 </div>
-            </div>
+            </div>)
         }
         return(
             <div className="content">
-                <div className="header"><p className="header-title">{this.state.userInfo.name}'s Profile</p></div>
+                <div className="header"><p className="header-title">{this.props.currentUsername}'s Profile</p></div>
                 <div className="inner-content">
                     <Profile userInfo={this.state.userInfo}/>
                 </div>
@@ -35,3 +36,12 @@ class ProfileContainer extends Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return { 
+        currentUser: state.usersReducer.user,
+        currentUsername: state.usersReducer.username
+    }
+}
+
+export default connect(mapStateToProps, null)(ProfileContainer);

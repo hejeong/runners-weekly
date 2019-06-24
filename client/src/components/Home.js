@@ -1,5 +1,4 @@
 import React from 'react';
-import BlogContainer from './BlogContainer';
 const Home = () => {
     return(
         <div className="content">

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setUser } from '../actions/users.js';
-
+import { setUser, setUsername } from '../actions/users.js';
 
 class Login extends Component {
     constructor(){
@@ -51,6 +50,7 @@ class Login extends Component {
                 //success
                 localStorage.setItem("token", data.jwt)
                 this.props.setUser(data.user.name)
+                this.props.setUsername(data.user.username)
                 this._isMounted && this.setState({
                     redirect: true
                 })
@@ -84,4 +84,4 @@ const mapStateToProps = (state) => {
     return { currentUser: state.usersReducer.user }
 }
 
-export default connect(mapStateToProps, { setUser })(Login);
+export default connect(mapStateToProps, { setUser, setUsername })(Login);
