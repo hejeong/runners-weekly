@@ -1,5 +1,7 @@
 import React from 'react';
 import BlogList from './BlogList';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 class BlogContainer extends React.Component {
     constructor() {
       super()
@@ -20,6 +22,9 @@ class BlogContainer extends React.Component {
     }
    
     render() {
+      if(!this.props.currentUser){
+        return <Redirect to='/' />
+      }
       return <div className="content">
           <div className="header"><p className="header-title">Runner Magazine</p></div>
           <div className="inner-content">
@@ -30,5 +35,10 @@ class BlogContainer extends React.Component {
         </div>
     }
   }
+  const mapStateToProps = (state) => {
+    return { 
+        currentUser: state.usersReducer.user,
+    }
+}
 
-  export default BlogContainer;
+export default connect(mapStateToProps, null)(BlogContainer);
