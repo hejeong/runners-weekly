@@ -16,6 +16,15 @@ class UsersController < ApplicationController
         end 
     end
 
+    def show 
+        @user = User.find_by({username: params[:username]})
+        if @user
+            render json: {user: @user}
+        else
+            render json: {errors: "No user under this alias"}
+        end
+    end 
+
     def index
         users = User.all
         render json: users

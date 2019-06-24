@@ -42,7 +42,7 @@ class Signup extends Component {
                 alert(data.errors);
             }else {
                 localStorage.setItem("token", data.jwt)
-                this.props.setUser(data.user.name)
+                this.props.setUser(data.user.username)
             }
         }) 
         .catch(function() {
