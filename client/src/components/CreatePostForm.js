@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 class CreatePostForm extends Component {
     constructor(){
         super()
         this.state={
-            username: '',
-            password: '',
+            title: '',
+            description: '',
+            content: '',
+            imageURL: '',
             redirect: false,
         }
         this._isMounted = false;
@@ -26,15 +29,18 @@ class CreatePostForm extends Component {
 
     handleLoginOnSubmit = (event) => {
         event.preventDefault()
-        fetch(`http://localhost:8000/api/login`, {
+        fetch(`http://localhost:8000/api/post/new`, {
             method: 'POST',
             headers: {
 				"Content-Type": 'application/json'
             },
             body: JSON.stringify({
-                user: {
-                    username: this.state.username,
-                    password: this.state.password
+                post: {
+                    title: this.state.title,
+                    description: this.state.description,
+                    content: this.state.content,
+                    imageURL: this.state.imageURL,
+                    username: this.props.currentUsername
                 }
             })
         })
@@ -45,29 +51,26 @@ class CreatePostForm extends Component {
                 alert(data.error)
             }else {
                 //success
-                localStorage.setItem("token", data.jwt)
-                this.props.setUser(data.user.name)
-                this.props.setUsername(data.user.username)
-                this._isMounted && this.setState({
-                    redirect: true
-                })
+               
             }
         });
     }
      
     render(){ 
-        if(this.state.redirect || this.props.currentUser){
-           return <Redirect to='/' />
-        }
+       
         return(
             <div className="content">
                 <div className="header"><p className="header-title">Create your blogpost</p></div>
                 <div className="inner-content">
-                <form onSubmit={this.handleLoginOnSubmit} className="login-form">
-                    <h4>Sign in to continue</h4>
-                    <input id="username" name="username" placeholder="Username" type="text" value={this.state.username} onChange={this.handleLoginOnChange} />
+                <form onSubmit={this.handleLoginOnSubmit} className="create-post-form">
+                    <h4>Create a Post</h4>
+                    <input id="title" name="title" placeholder="Post Title" type="text" value={this.state.title} onChange={this.handleLoginOnChange} />
                     <br></br><br></br>
-                    <input id="password" name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.handleLoginOnChange} /> 
+                    <input id="description" name="description" placeholder="Post Description" type="text" value={this.state.description} onChange={this.handleLoginOnChange} />
+                    <br></br><br></br>
+                    <input id="content" name="content" placeholder="Post Content" type="text" value={this.state.content} onChange={this.handleLoginOnChange} />
+                    <br></br><br></br>
+                    <input id="imageURL" name="imageURL" placeholder="Post Image URL" type="text" value={this.state.imageURL} onChange={this.handleLoginOnChange} />
                     <br></br><br></br>
                     <input type="submit" name="submit" value="Login" className="login-submit"/>
                 </form>
@@ -78,7 +81,7 @@ class CreatePostForm extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return { currentUser: state.usersReducer.user }
+    return { currentUsername: state.usersReducer.username }
 }
 
-export default connect(mapStateToProps, { setUser, setUsername })(CreatePostForm);
+export default connect(mapStateToProps, null)(CreatePostForm);

@@ -31,7 +31,7 @@ class BlogContainer extends React.Component {
               <p className="header-title">Runner Magazine</p>
             </div>
             <div className="create-post">
-              <NavLink to="/post/new" >+ Create a Post</NavLink>
+              <NavLink to="/blog/new" >+ Create a Post</NavLink>
             </div>
           </div>
           <div className="inner-content">

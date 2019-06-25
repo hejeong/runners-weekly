@@ -22,8 +22,11 @@ class BlogPost extends Component {
     render(){
         if(!this.state.post){
             return <div className="content">
-                <h1>Loading...</h1>
-                <CircularProgress />
+                <div className="header"><p className="header-title"><CircularProgress /> Loading...</p></div>
+                <div className="inner-content">
+                
+                </div>
+               
             </div>
         }
         return <div className="content">
