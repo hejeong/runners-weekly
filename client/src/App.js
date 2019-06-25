@@ -8,6 +8,7 @@ import BlogPost from './components/BlogPost';
 import Navbar from './components/Navbar';
 import { NavLink, Switch, Route} from 'react-router-dom';
 import ProfileContainer from './components/ProfileContainer';
+import CreatePostForm from './components/CreatePostForm';
 function App() {
   
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route exact path ='/blog/:id' component={ BlogPost } />
           <Route exact path ='/blog' component={ BlogContainer } />
           <Route exact path ='/profile/:username' component= { ProfileContainer } />
+          <Route exact path ='/blog/new' component={ CreatePostForm } />
           <Route component={NoRoute} />
         </Switch>
     </div>
