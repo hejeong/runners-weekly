@@ -16,7 +16,11 @@ class PostsController < ApplicationController
 
     def index
         @posts = Post.all
-        render json: { posts: @posts }, status: :accepted
+        post_authors = @posts.map{ |post|
+            user = post.user
+            { "#{post.id}": user.name }
+        }
+        render json: { posts: @posts, authors: post_authors}, status: :accepted
     end
    
     def show

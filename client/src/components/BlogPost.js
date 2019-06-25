@@ -9,14 +9,19 @@ class BlogPost extends Component {
             post: null,
             postAuthor: null
         }
+        this._isMounted = false;
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
     componentDidMount(){
+        this._isMounted = true;
         const url = 'http://localhost:8000/api/posts/' + this.props.match.params.id;
-        console.log(url)
         fetch(url)
         .then(resp => resp.json())
         .then(data => {
-            this.setState({
+            this._isMounted && this.setState({
                 post: data.post,
                 postAuthor: data.post_author
             })
@@ -29,7 +34,7 @@ class BlogPost extends Component {
           }
         if(!this.state.post){
             return <div className="content">
-                <div className="header"><p className="header-title"><CircularProgress /> Loading...</p></div>
+                <div className="header"><CircularProgress /><p className="header-title"> Loading...</p></div>
                 <div className="inner-content">
                 
                 </div>

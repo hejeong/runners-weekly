@@ -6,16 +6,23 @@ class BlogContainer extends React.Component {
     constructor() {
       super()
       this.state = {
-        blogposts: []
+        blogposts: [],
+        blogPostAuthors: []
       };
+      this._isMounted = false;
     }
-    
+
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
     componentDidMount(){
+        this._isMounted = true;
         fetch('http://localhost:8000/api/posts')
         .then(resp => resp.json())
         .then(data => {
-            this.setState({
-                blogposts: data.posts
+            this._isMounted && this.setState({
+                blogposts: data.posts,
+                blogPostAuthors: data.authors
             })
         })
         .catch(error => console.log(error));
@@ -36,7 +43,7 @@ class BlogContainer extends React.Component {
           </div>
           <div className="inner-content">
             <ul className="blog-list">
-              <BlogList posts={this.state.blogposts}/>
+              <BlogList posts={this.state.blogposts} authors={this.state.blogPostAuthors}/>
             </ul>
           </div>
         </div>
