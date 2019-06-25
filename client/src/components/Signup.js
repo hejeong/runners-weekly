@@ -11,7 +11,16 @@ class Signup extends Component {
             username: "",
             password: "",
             email: "",
+            redirect: false,
         }
+        this._isMounted = false;
+    }
+    componentDidMount() {
+        this._isMounted = true;
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
     }
     handleOnChange = (event) => {
         this.setState({
@@ -44,6 +53,9 @@ class Signup extends Component {
                 localStorage.setItem("token", data.jwt)
                 this.props.setUser(data.user.user)
                 this.props.setUsername(data.user.username)
+                this._isMounted && this.setState({
+                    redirect: true
+                })
             }
         }) 
         .catch(function() {
@@ -52,9 +64,9 @@ class Signup extends Component {
     }
     
     render(){
-        if(this.props.currentUser){
+        if(this.state.redirect || this.props.currentUser){
             return <Redirect to='/' />
-        }
+         }
         return(
             <div className="content">
                 <div className="header"><p className="header-title">Sign Up</p></div>
