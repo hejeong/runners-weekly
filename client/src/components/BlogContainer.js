@@ -1,7 +1,7 @@
 import React from 'react';
 import BlogList from './BlogList';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, NavLink } from 'react-router-dom';
 class BlogContainer extends React.Component {
     constructor() {
       super()
@@ -26,7 +26,14 @@ class BlogContainer extends React.Component {
         return <Redirect to='/' />
       }
       return <div className="content">
-          <div className="header"><p className="header-title">Runner Magazine</p></div>
+          <div className="header">
+            <div className="title-container">
+              <p className="header-title">Runner Magazine</p>
+            </div>
+            <div className="create-post">
+              <NavLink to="/post/new" >+ Create a Post</NavLink>
+            </div>
+          </div>
           <div className="inner-content">
             <ul className="blog-list">
               <BlogList posts={this.state.blogposts}/>

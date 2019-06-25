@@ -73,6 +73,7 @@ body {
 .inner-content{
   padding-top: 80px;
   padding-left: 10px;
+
 }
 .navbar {
   border-top: 0.5px solid rgba(77, 75, 75, 0.774);
@@ -248,15 +249,24 @@ p {
   color: rgb(255, 255, 255);
   font-family: 'Josefin Slab', serif;
   box-shadow: 0 20px 40px -14px rgba(0,0,0,0.25);
+  overflow-x: hidden;
 }
 
 .header-title {
   font-size: 35px;
   margin: 20px;
+  margin-right: 0px;
+  float: left;
+  width: 100%;
+}
+
+.title-container {
+  float: left;
 }
 /* On mouse-over, add a deeper shadow */
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  transform: scale(1.01);
 }
 
 /* Add some padding inside the card container */
@@ -347,4 +357,25 @@ p {
   margin-left: 50px;
   margin-top: 0px;
   padding-bottom: 10px; 
+}
+
+.create-post {
+  z-index: 2;
+  background: rgba(15, 128, 7, 0.5);
+  float: right;
+  margin-top: 18px;
+  margin-right: 230px;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 0.25em;
+  transition: 0.5s;
+}
+
+.create-post>a{
+  color: white;
+}
+
+.create-post:hover {
+  background: rgb(15, 128, 7);
+  transform: scale(1.05);
 }
