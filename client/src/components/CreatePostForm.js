@@ -57,9 +57,12 @@ class CreatePostForm extends Component {
     }
      
     render(){ 
-       if(this.state.redirect){
-        return(<Redirect to='/blog' />)
-       }       
+        if(!this.props.currentUsername){
+            return <Redirect to='/login' />
+        }
+        if(this.state.redirect){
+            return(<Redirect to='/blog' />)
+        }       
         return(
             <div className="content">
                 <div className="header"><p className="header-title">Create your blogpost</p></div>
@@ -70,11 +73,11 @@ class CreatePostForm extends Component {
                     <br></br><br></br>
                     <input id="description" name="description" placeholder="Post Description" type="text" value={this.state.description} onChange={this.handleLoginOnChange} />
                     <br></br><br></br>
-                    <input id="content" name="content" placeholder="Post Content" type="text" value={this.state.content} onChange={this.handleLoginOnChange} />
+                    <textarea id="content" name="content" placeholder="Post Content" value={this.state.content} onChange={this.handleLoginOnChange} />
                     <br></br><br></br>
                     <input id="imageURL" name="imageURL" placeholder="Post Image URL" type="text" value={this.state.imageURL} onChange={this.handleLoginOnChange} />
                     <br></br><br></br>
-                    <input type="submit" name="submit" value="Login" className="login-submit"/>
+                    <input type="submit" name="submit" value="Create Post" className="create-submit"/>
                 </form>
                 </div>
             </div>

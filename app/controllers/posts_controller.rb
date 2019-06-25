@@ -21,6 +21,12 @@ class PostsController < ApplicationController
    
     def show
         @post = Post.find(params[:id])
-        render json: { post: @post }, status: :ok   
+        render json: { 
+            post: @post,
+            post_author: {
+                username: @post.user.username,
+                name: @post.user.name
+            }
+        }, status: :ok   
     end
 end
