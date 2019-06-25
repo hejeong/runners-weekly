@@ -39,7 +39,7 @@ class CreatePostForm extends Component {
                     title: this.state.title,
                     description: this.state.description,
                     content: this.state.content,
-                    imageURL: this.state.imageURL,
+                    image_url: this.state.imageURL,
                     username: this.props.currentUsername
                 }
             })
