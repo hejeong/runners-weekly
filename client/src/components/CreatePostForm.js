@@ -29,19 +29,17 @@ class CreatePostForm extends Component {
 
     handleLoginOnSubmit = (event) => {
         event.preventDefault()
-        fetch(`http://localhost:8000/api/post/new`, {
+        fetch(`http://localhost:8000/api/posts`, {
             method: 'POST',
             headers: {
 				"Content-Type": 'application/json'
             },
             body: JSON.stringify({
-                post: {
-                    title: this.state.title,
-                    description: this.state.description,
-                    content: this.state.content,
-                    image_url: this.state.imageURL,
-                    username: this.props.currentUsername
-                }
+                title: this.state.title,
+                description: this.state.description,
+                content: this.state.content,
+                image_url: this.state.imageURL,
+                username: this.props.currentUsername
             })
         })
         .then(response => response.json())
@@ -51,13 +49,17 @@ class CreatePostForm extends Component {
                 alert(data.error)
             }else {
                 //success
-               
+               this.setState({
+                   redirect: true
+               })
             }
         });
     }
      
     render(){ 
-       
+       if(this.state.redirect){
+        return(<Redirect to='/blog' />)
+       }       
         return(
             <div className="content">
                 <div className="header"><p className="header-title">Create your blogpost</p></div>
