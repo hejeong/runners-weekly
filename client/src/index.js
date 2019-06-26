@@ -7,11 +7,13 @@ import App from './App';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import usersReducer from './reducers/users.js';
+import loginReducer from './reducers/login.js';
 import { BrowserRouter as Router} from 'react-router-dom';
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const reducers = combineReducers({
-   usersReducer 
+   usersReducer,
+   loginReducer
 })
 
 const store = createStore(reducers, composeEnhancer(applyMiddleware(thunk)));

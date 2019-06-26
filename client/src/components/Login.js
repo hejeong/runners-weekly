@@ -1,87 +1,43 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setUser, setUsername } from '../actions/users.js';
+import { updateLoginForm, login } from '../actions/login.js';
 
-class Login extends Component {
-    constructor(){
-        super()
-        this.state={
-            username: '',
-            password: '',
-            redirect: false,
+const Login = ({ loginForm , updateLoginForm, login, currentUser }) => {
+    const handleInputChange = event => {
+        const {name, value} = event.target
+        const updateFormData = {
+            ...loginForm,
+            [name]: value
         }
-        this._isMounted = false;
-    }
-    componentDidMount() {
-        this._isMounted = true;
+        updateLoginForm(updateFormData)
     }
 
-    componentWillUnmount() {
-        this._isMounted = false;
-    }
-
-    handleLoginOnChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
-    }
-
-    handleLoginOnSubmit = (event) => {
+    const handleSubmit = event => {
         event.preventDefault()
-        fetch(`http://localhost:8000/api/login`, {
-            method: 'POST',
-            headers: {
-				"Content-Type": 'application/json'
-            },
-            body: JSON.stringify({
-                user: {
-                    username: this.state.username,
-                    password: this.state.password
-                }
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if(data.error){
-                //error
-                alert(data.error)
-            }else {
-                //success
-                localStorage.setItem("token", data.jwt)
-                this.props.setUser(data.user.name)
-                this.props.setUsername(data.user.username)
-                this._isMounted && this.setState({
-                    redirect: true
-                })
-            }
-        });
+        login(loginForm)
     }
-     
-    render(){ 
-        if(this.state.redirect || this.props.currentUser){
-           return <Redirect to='/' />
-        }
-        return(
-            <div className="content">
-                <div className="header"><p className="header-title">Log In</p></div>
-                <div className="inner-content">
-                <form onSubmit={this.handleLoginOnSubmit} className="login-form">
+    return(
+        <div className="content">
+            <div className="header"><p className="header-title">Log In</p></div>
+            <div className="inner-content">
+                <form onSubmit={handleSubmit} className="login-form">
                     <h4>Sign in to continue</h4>
-                    <input id="username" name="username" placeholder="Username" type="text" value={this.state.username} onChange={this.handleLoginOnChange} />
+                    <input id="username" name="username" placeholder="Username" type="text" value={loginForm.username} onChange={ handleInputChange} />
                     <br></br><br></br>
-                    <input id="password" name="password" type="password" placeholder="Password" value={this.state.password} onChange={this.handleLoginOnChange} /> 
+                    <input id="password" name="password" type="password" placeholder="Password" value={loginForm.password} onChange={handleInputChange} /> 
                     <br></br><br></br>
                     <input type="submit" name="submit" value="Login" className="login-submit"/>
                 </form>
-                </div>
             </div>
-        )
-    }
+        </div>)
 }
 
 const mapStateToProps = (state) => {
-    return { currentUser: state.usersReducer.user }
+    return { 
+        loginForm: state.loginReducer,
+        currentUser: state.usersReducer.name
+    }
 }
 
-export default connect(mapStateToProps, { setUser, setUsername })(Login);
+export default connect(mapStateToProps, { updateLoginForm, login })(Login);

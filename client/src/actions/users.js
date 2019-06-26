@@ -1,4 +1,6 @@
 // action creators
+
+// synchronous
 export const setUser = user => {
     return { type: "SET_USER", user: user}
 }
@@ -10,3 +12,4 @@ export const setUsername = username => {
 export const removeUser = () => {
     return { type: "REMOVE_USER" }
 }
+
