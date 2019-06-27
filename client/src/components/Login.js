@@ -17,6 +17,10 @@ const Login = ({ loginForm , updateLoginForm, login, currentUser }) => {
         event.preventDefault()
         login(loginForm)
     }
+
+    if(currentUser){
+        return(<Redirect to='/' />)
+    }
     return(
         <div className="content">
             <div className="header"><p className="header-title">Log In</p></div>
@@ -36,7 +40,7 @@ const Login = ({ loginForm , updateLoginForm, login, currentUser }) => {
 const mapStateToProps = (state) => {
     return { 
         loginForm: state.loginReducer,
-        currentUser: state.usersReducer.name
+        currentUser: state.usersReducer.user
     }
 }
 

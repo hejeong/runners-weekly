@@ -57,7 +57,7 @@ class CreatePostForm extends Component {
     }
      
     render(){ 
-        if(!this.props.currentUsername){
+        if(!this.props.currentUser){
             return <Redirect to='/login' />
         }
         if(this.state.redirect){
@@ -86,7 +86,10 @@ class CreatePostForm extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return { currentUsername: state.usersReducer.username }
+    return { 
+        currentUsername: state.loginReducer.username,
+        currentUser: state.usersReducer.user 
+    }
 }
 
 export default connect(mapStateToProps, null)(CreatePostForm);
