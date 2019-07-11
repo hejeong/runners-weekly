@@ -1,31 +1,19 @@
 import React from 'react';
 import BlogList from './BlogList';
 import { connect } from 'react-redux';
+import { fetchBlogData } from '../actions/blog.js';
 import { Redirect, NavLink } from 'react-router-dom';
 class BlogContainer extends React.Component {
-    constructor() {
-      super()
+    constructor(props) {
+      super(props)
       this.state = {
         blogposts: [],
         blogPostAuthors: []
-      };
-      this._isMounted = false;
+      }
     }
 
-    componentWillUnmount() {
-        this._isMounted = false;
-    }
     componentDidMount(){
-        this._isMounted = true;
-        fetch('http://localhost:8000/api/posts')
-        .then(resp => resp.json())
-        .then(data => {
-            this._isMounted && this.setState({
-                blogposts: data.posts,
-                blogPostAuthors: data.authors
-            })
-        })
-        .catch(error => console.log(error));
+      this.props.fetchBlogData()
     }
    
     render() {
@@ -43,7 +31,7 @@ class BlogContainer extends React.Component {
           </div>
           <div className="inner-content">
             <ul className="blog-list">
-              <BlogList posts={this.state.blogposts} authors={this.state.blogPostAuthors}/>
+              <BlogList posts={this.props.blogposts} authors={this.props.blogPostAuthors}/>
             </ul>
           </div>
         </div>
@@ -52,7 +40,9 @@ class BlogContainer extends React.Component {
   const mapStateToProps = (state) => {
     return { 
         currentUser: state.usersReducer.user,
+        blogposts: state.blogReducer.blogs,
+        blogPostAuthors: state.blogReducer.authors
     }
 }
 
-export default connect(mapStateToProps, null)(BlogContainer);
+export default connect(mapStateToProps, { fetchBlogData })(BlogContainer);
