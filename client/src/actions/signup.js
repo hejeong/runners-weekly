@@ -4,7 +4,11 @@ export const updateSignUpForm = formData => {
         formData
     }
 }
-
+export const resetSignupForm = () => {
+    return {
+        type: "RESET_FORM"
+    }
+}
 // asynchronous
 export const signup = cred => {
     return dispatch => { 
@@ -32,6 +36,7 @@ export const signup = cred => {
             localStorage.setItem("token", data.jwt)
             dispatch({type: "SET_USER", user: data.user.name});
             dispatch({type: "SET_USERNAME", user: data.user.username})
+            dispatch(resetSignupForm())
         }
     });
     }
