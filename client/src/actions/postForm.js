@@ -5,7 +5,12 @@ export const updatePostForm = formData => {
     }
 }
 
-
+export const addNewBlogData = (postData) => {
+    return {
+        type: "ADD_NEW_BLOG_DATA",
+        postData
+    }
+}
 // asynchronous
 export const createPost = postData => {
     return dispatch => { 
@@ -29,7 +34,9 @@ export const createPost = postData => {
             alert(data.error)
         }else {
             //success
+            dispatch(addNewBlogData(data.blog))
             dispatch({type: "POST_CREATED"});
+            dispatch({type: "RESET_FORM"});
         }
     });
     }

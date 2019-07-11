@@ -20,7 +20,7 @@ const CreatePostForm = ({postForm, createPost, updatePostForm, currentUser, curr
     if(!currentUser){
         return <Redirect to='/login' />
     }
-    if(!postForm){
+    if(postForm.redirect){
         return(<Redirect to='/blog' />)
     }       
     return(

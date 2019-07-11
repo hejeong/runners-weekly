@@ -3,7 +3,8 @@ const initialState = {
     description: "",
     content: "",
     image_url: "",
-    username: ""
+    username: "",
+    redirect: false
 }
 
 export default (state=initialState, action) => {
@@ -11,6 +12,8 @@ export default (state=initialState, action) => {
     case "UPDATE_POST_FORM":
         return action.formData
     case "POST_CREATED":
+        return Object.assign({}, state, {redirect: true})
+    case "RESET_FORM":
         return Object.assign({}, state, initialState)
     default:
         return state

@@ -4,6 +4,19 @@ export const requestBlogData = () => {
     }
 }
 
+export const getSpecificBlog = (postID) => {
+    return {
+        type: "GET_SPECIFIC_BLOG",
+        postID
+    }
+}
+
+export const resetTargetBlog= () => {
+    return {
+        type: "RESET_TARGET"
+    }
+}
+
 export const receiveBlogData = (blogData) => {
     return {
         type: "RECEIVE_BLOG_DATA",

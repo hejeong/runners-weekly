@@ -10,7 +10,11 @@ class PostsController < ApplicationController
             user_id: user.id
         })
         render json: {
-            accepted: true
+            accepted: true,
+            blog: { 
+                post: @post,
+                author: user.name
+            }
         }, status: :accepted
     end 
 

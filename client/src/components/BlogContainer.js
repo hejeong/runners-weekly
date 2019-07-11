@@ -3,10 +3,6 @@ import BlogList from './BlogList';
 import { connect } from 'react-redux';
 import { Redirect, NavLink } from 'react-router-dom';
 class BlogContainer extends React.Component {
-    constructor(props) {
-      super(props)
-     
-    }
 
     render() {
       if(!this.props.currentUser){
