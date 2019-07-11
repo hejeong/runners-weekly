@@ -8,14 +8,19 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import usersReducer from './reducers/users.js';
 import loginReducer from './reducers/login.js';
+import signupReducer from './reducers/signup.js';
 import blogReducer from './reducers/blog.js';
+import postFormReducer from './reducers/postForm.js';
+
 import { BrowserRouter as Router} from 'react-router-dom';
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const reducers = combineReducers({
    usersReducer,
    loginReducer,
-   blogReducer
+   blogReducer,
+   signupReducer,
+   postFormReducer
 })
 
 const store = createStore(reducers, composeEnhancer(applyMiddleware(thunk)));

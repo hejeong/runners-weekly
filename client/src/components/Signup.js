@@ -1,96 +1,49 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { setUser, setUsername } from '../actions/users.js';
+import { updateSignUpForm, signup } from '../actions/signup.js';
 import { Redirect } from 'react-router-dom';
 
-class Signup extends Component {
-    constructor(){
-        super()
-        this.state = {
-            name: "",
-            username: "",
-            password: "",
-            email: "",
-            redirect: false,
+const Signup = ({signupForm, signup, updateSignUpForm, currentUser}) => {
+    const handleInputChange = event => {
+        const {name, value} = event.target
+        const updateFormData = {
+            ...signupForm,
+            [name]: value
         }
-        this._isMounted = false;
-    }
-    componentDidMount() {
-        this._isMounted = true;
+        updateSignUpForm(updateFormData)
     }
 
-    componentWillUnmount() {
-        this._isMounted = false;
+    const handleSubmit = event => {
+        event.preventDefault()
+        signup(signupForm)
     }
-    handleOnChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
+   
+    if(currentUser){
+        return <Redirect to='/' />
     }
-
-    handleOnSubmit = (event) => {
-        event.preventDefault();
-        fetch(`http://localhost:8000/api/users`,{
-            method: 'POST',
-			headers: {
-				"Content-Type": 'application/json'
-            },
-            body: JSON.stringify({
-                user: {
-                    name: this.state.name,
-                    username: this.state.username,
-                    password: this.state.password,
-                    email: this.state.email
-                }
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            if(data.errors){
-                alert(data.errors);
-            }else {
-                localStorage.setItem("token", data.jwt)
-                this.props.setUser(data.user.user)
-                this.props.setUsername(data.user.username)
-                this._isMounted && this.setState({
-                    redirect: true
-                })
-            }
-        }) 
-        .catch(function() {
-            console.log("error");
-        });;
-    }
-    
-    render(){
-        if(this.state.redirect || this.props.currentUser){
-            return <Redirect to='/' />
-         }
-        return(
-            <div className="content">
-                <div className="header"><p className="header-title">Sign Up</p></div>
-                <div className="inner-content">
-                <form onSubmit={this.handleOnSubmit} className="login-form">
-                    <h4>Sign Up</h4>
-                    <input type="text" name="name" placeholder="Name" value={this.state.name} onChange={this.handleOnChange} /> <br /><br />
-                    <input type="text" name="username" placeholder="Username" value={this.state.username} onChange={this.handleOnChange} /> <br /><br />
-                    <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleOnChange} /> <br /><br />
-                    <input type="email" name="email" placeholder="E-mail" value={this.state.email} onChange={this.handleOnChange} /> <br /><br />
-
-                    <input type="submit" name="submit" value="Submit" className="login-submit"/>
-
-                </form>
-                </div>
+    return(
+        <div className="content">
+            <div className="header"><p className="header-title">Sign Up</p></div>
+            <div className="inner-content">
+            <form onSubmit={handleSubmit} className="login-form">
+                <h4>Sign Up</h4>
+                <input type="text" name="name" placeholder="Name" value={signupForm.name} onChange={handleInputChange} /> <br /><br />
+                <input type="text" name="username" placeholder="Username" value={signupForm.username} onChange={handleInputChange} /> <br /><br />
+                <input type="password" name="password" placeholder="Password" value={signupForm.password} onChange={handleInputChange} /> <br /><br />
+                <input type="email" name="email" placeholder="E-mail" value={signupForm.email} onChange={handleInputChange} /> <br /><br />
+                <input type="submit" name="submit" value="Submit" className="login-submit"/>
+            </form>
             </div>
-        )
-    }
+        </div>
+    )
 }
 const mapStateToProps = (state) => {
     return { 
+        signupForm: state.signupReducer,
         currentUser: state.usersReducer.user,
         currentUsername: state.usersReducer.username
      }
 }
 
-export default connect(mapStateToProps, { setUser, setUsername })(Signup);
+export default connect(mapStateToProps, { signup, updateSignUpForm, setUser, setUsername })(Signup);

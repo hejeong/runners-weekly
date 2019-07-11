@@ -1,21 +1,13 @@
 import React from 'react';
 import BlogList from './BlogList';
 import { connect } from 'react-redux';
-import { fetchBlogData } from '../actions/blog.js';
 import { Redirect, NavLink } from 'react-router-dom';
 class BlogContainer extends React.Component {
     constructor(props) {
       super(props)
-      this.state = {
-        blogposts: [],
-        blogPostAuthors: []
-      }
+     
     }
 
-    componentDidMount(){
-      this.props.fetchBlogData()
-    }
-   
     render() {
       if(!this.props.currentUser){
         return <Redirect to='/' />
@@ -45,4 +37,4 @@ class BlogContainer extends React.Component {
     }
 }
 
-export default connect(mapStateToProps, { fetchBlogData })(BlogContainer);
+export default connect(mapStateToProps, null)(BlogContainer);

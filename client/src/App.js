@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Home from './components/Home';
 import NoRoute from './components/NoRoute';
 import Signup from './components/Signup';
@@ -9,9 +9,17 @@ import Navbar from './components/Navbar';
 import { NavLink, Switch, Route} from 'react-router-dom';
 import ProfileContainer from './components/ProfileContainer';
 import CreatePostForm from './components/CreatePostForm';
-function App() {
-  
-  return (
+import { connect } from 'react-redux';
+import { fetchBlogData } from './actions/blog.js';
+
+class App extends Component {
+
+  componentDidMount(){
+    this.props.fetchBlogData()
+  }
+
+  render(){
+    return (
     <div>
         <div className="drawer">
           <div className="company-name">
@@ -33,7 +41,7 @@ function App() {
           <Route component={NoRoute} />
         </Switch>
     </div>
-  );
+  )
+  }
 }
-
-export default App;
+export default connect(null, { fetchBlogData })(App);
